@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.my.dao.UserDao">
+
+    <!-- 为DAO接口方法提供sql语句配置-->
+
+    <insert id="insertUser" parameterType="User">
+        <!-- ignore：主键冲突,忽略报错，通过返回int判断是否插入成功
+            返回： 1：插入成功； 0：插入失败（重复插入）（由mybatis和mysql自动处理）
+         -->
+        insert ignore into user(user_id, user_name)
+        values (#{userId}, #{userName})
+    </insert>
+
+    <update id="updateUser">
+        <!-- 返回： 1：更新成功； 0：更新失败（更新的行不存在）（由mybatis和mysql自动处理）-->
+        update
+          user
+        set user_name = #{name}
+        where user_id = #{id} ;
+    </update>
+
+    <select id="queryById" resultType="User" parameterType="long">
+        select user_name, user_id
+        from user
+        where user_id = #{id};
+    </select>
+
+</mapper>
