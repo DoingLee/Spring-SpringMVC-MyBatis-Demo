@@ -3,10 +3,12 @@ package com.my.service;
 import com.my.dao.UserDao;
 import com.my.dto.UserMsg;
 import com.my.entity.User;
+import com.my.exception.InValidDeleteException;
 import com.my.exception.InValidUpdateException;
 import com.my.exception.RepeatInsertException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by Doing on 2016/12/5 0005.
@@ -43,6 +45,7 @@ public class UserService implements IUserService {
         }
     }
 
+    @Transactional
     @Override
     public void updateUser(long id, String name) throws InValidUpdateException {
         int state = userDao.updateUser(id, name);
@@ -51,6 +54,15 @@ public class UserService implements IUserService {
         } else { //state == 0 ：更新失败
             throw new InValidUpdateException("无效更新！");
         }
+    }
 
+    @Override
+    public void deleteUser(long id) throws InValidDeleteException {
+        int state = userDao.deleteUser(id);
+        if (state == 1){//删除成功
+            return;
+        } else { //state == 0 ：删除失败
+            throw new InValidDeleteException("无效删除！");
+        }
     }
 }

@@ -25,20 +25,26 @@ public class UserDaoTest {
 
     @Test
     public void testInsertUser() throws Exception {
-        User user = new User(1002, "李四");
+        User user = new User(1005, "李四");
         int state = userDao.insertUser(user);
         logger.debug("插入状态：" + state); //插入成功：返回1， 插入失败（重复插入）：返回0
     }
 
     @Test
     public void testQueryById() throws Exception {
-        User user = userDao.queryById(1003);
+        User user = userDao.queryById(1005);
         logger.debug(user.toString());
     }
 
     @Test
     public void testUpdateUser() throws Exception {
-        int state = userDao.updateUser(1005, "王五"); //把id为1003的人名更改为王五
+        int state = userDao.updateUser(1005, "王五"); //把id为1005的人名更改为王五
         logger.debug("更新状态：" + state);//成功：1， 失败：0
+    }
+
+    @Test
+    public void testDeleteUser() {
+        int state = userDao.deleteUser(1006);
+        logger.debug("删除状态：" + state); //删除成功：返回1， 删除失败：返回0
     }
 }

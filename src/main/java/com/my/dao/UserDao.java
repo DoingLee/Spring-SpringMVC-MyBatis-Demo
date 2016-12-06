@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 /**
  * Created by Doing on 2016/12/5 0005.
  */
-@Repository
 public interface UserDao {
 
     /**
@@ -30,4 +29,10 @@ public interface UserDao {
      * @return 1：更新成功； 0：更新失败（更新的行不存在）（由mybatis和mysql自动处理）
      */
     int updateUser(@Param("id")long id, @Param("name")String name);
+
+    /**
+     * @param id 根据id删除user信息
+     * @return
+     */
+    int deleteUser(long id);
 }

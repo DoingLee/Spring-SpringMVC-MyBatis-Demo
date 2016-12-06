@@ -29,4 +29,9 @@
         where user_id = #{id};
     </select>
 
+    <delete id="deleteUser" >
+        delete from user
+        where user_id = #{id};
+    </delete>
+
 </mapper>

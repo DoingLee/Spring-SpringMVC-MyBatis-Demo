@@ -5,8 +5,10 @@ package com.my.service;
  */
 
 import com.my.dto.UserMsg;
+import com.my.exception.InValidDeleteException;
 import com.my.exception.InValidUpdateException;
 import com.my.exception.RepeatInsertException;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 业务接口:站在"使用者"角度设计接口
@@ -32,4 +34,11 @@ public interface IUserService {
      * @throws InValidUpdateException 无效更新（id不存在）
      */
     void updateUser(long id, String name) throws InValidUpdateException;
+
+    /**
+     *
+     * @param id 根据id删除
+     * @throws InValidDeleteException 无效删除
+     */
+    void deleteUser(long id ) throws InValidDeleteException;
 }

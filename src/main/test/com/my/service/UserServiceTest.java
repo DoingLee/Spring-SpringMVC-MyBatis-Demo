@@ -1,6 +1,7 @@
 package com.my.service;
 
 import com.my.dto.UserMsg;
+import com.my.exception.InValidDeleteException;
 import com.my.exception.InValidUpdateException;
 import com.my.exception.RepeatInsertException;
 import org.junit.Test;
@@ -20,14 +21,14 @@ import static org.junit.Assert.*;
 public class UserServiceTest {
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Test
     public void testAddUser(){
         try {
-            userService.addUser(1004, "张一");
+            userService.addUser(1006, "张一");
             logger.debug("插入成功");
         }catch (RepeatInsertException e){
             logger.debug("重复插入");
@@ -52,6 +53,16 @@ public class UserServiceTest {
             logger.debug("更新成功");
         }catch (InValidUpdateException e ) {
             logger.debug("无效更新");
+        }
+    }
+
+    @Test
+    public void testDeleteUser() {
+        try {
+            userService.deleteUser(1006);
+            logger.debug("删除成功");
+        }catch (InValidDeleteException e ) {
+            logger.debug("无效删除");
         }
     }
 }
