@@ -34,7 +34,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 注入数据库连接池 -->
         <property name="dataSource" ref="dataSource"/>
-        <!-- 扫描entity包 使用别名（这样在mapper xml中类名就不用使用全限定名了） -->
+        <!-- 扫描entity包 使用别名（这样在mapper xml中类名就不用使用全限定名了）（不支出Ant风格） -->
         <!--MyBatis配置中typeAliasesPackage扫描到的类，会保存其非全限类名 -> 在配置文件中的resultType可以直接写User这种形式-->
         <property name="typeAliasesPackage" value="com.my.entity"/>
         <!-- 配置MyBatis全局配置文件:mybatis-config.xml -->
